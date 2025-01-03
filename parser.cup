@@ -1,0 +1,26 @@
+import java_cup.runtime.*;
+
+terminal PLUS, MINUS, NUMBER, OBRACKET, CBRACKET, EQUAL, B, A;
+non terminal expr_list, expr, e, t, f;
+
+start with expr_list;
+
+expr_list ::= expr_list expr
+        | expr;
+
+expr ::= e EQUAL {: System.out.println("PARSER: expression recognized"); :};
+
+e ::= 	e PLUS t
+    | e MINUS t
+    | t
+;
+
+t ::=	t B
+    | t A
+    | f
+;
+
+f ::=	OBRACKET e CBRACKET
+    | B
+    | A
+;
