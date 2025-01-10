@@ -1,0 +1,20 @@
+import java_cup.runtime.*;
+
+terminal PLUS, MINUS, MULTIPLY, DIVIDE, NUMBER, OBRACKET, CBRACKET;
+non terminal expr, term, factor;
+
+start with expr;
+
+expr ::= expr PLUS term
+       | expr MINUS term
+       | term
+       ;
+
+term ::= term MULTIPLY factor
+       | term DIVIDE factor
+       | factor
+       ;
+
+factor ::= OBRACKET expr CBRACKET
+         | NUMBER
+         ;

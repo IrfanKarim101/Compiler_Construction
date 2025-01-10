@@ -1,0 +1,21 @@
+import java_cup.runtime.*;
+
+
+terminal PLUS, MINUS;
+terminal Integer NUM;
+
+
+non terminal Expr E;
+
+precedence left PLUS, MINUS;
+
+start with E;
+
+E ::=
+    E:e1 PLUS E:e2
+    {: System.out.println("E -> E + E"); RESULT = e1 + e2; :}
+  | E:e1 MINUS E:e2
+    {: System.out.println("E -> E - E"); RESULT = e1 - e2; :}
+  | NUM:n
+    {: System.out.println("E -> num"); RESULT = n.intValue(); :}
+  ;
